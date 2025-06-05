@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IFFLIX - Filmes e Séries</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍿</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <!-- Tailwind CSS CDN -->
+    <!--<script src="https://cdn.tailwindcss.com"></script>!-->
+</head>
+
+<body>
+    <div class="menu-btn" id="menu-btn" aria-label="Toggle menu" role="button" tabindex="0">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <nav class="menu" id="menu" aria-label="Main menu">
+        <ul>
+            <li class="active" data-tab="home">Filmes e Séries</li>
+            <li data-tab="series">Séries</li>
+            <li data-tab="filmes">Filmes</li>
+            <li data-tab="assistidos">Assistidos</li>
+            <li data-tab="listagem">listagem</li>
+            <li data-tab="cadastro">Cadastrar novo título</li>
+        </ul>
+    </nav>
+
+    <main class="content" id="content">
+        <h1 class="title">IFFLIX</h1>
+        <section id="home" class="tab-content active" tabindex="0">
+
+            <header id="headerSearch">
+                <div id="searchBox" class="fieldGroup">
+                    <input type="text" id="busca" required="" autocomplete="on">
+                    <label for="busca" id="labelBusca">Buscar</label>
+                </div>
+
+
+                <!-- Botao de busca -->
+                <button class="searchButton" id="searchBtn" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
+                        <g clip-path="url(#clip0_2_17)">
+                            <g filter="url(#filter0_d_2_17)">
+                                <path
+                                    d="M23.7953 23.9182L19.0585 19.1814M19.0585 19.1814C19.8188 18.4211 20.4219 17.5185 20.8333 16.5251C21.2448 15.5318 21.4566 14.4671 21.4566 13.3919C21.4566 12.3167 21.2448 11.252 20.8333 10.2587C20.4219 9.2653 19.8188 8.36271 19.0585 7.60242C18.2982 6.84214 17.3956 6.23905 16.4022 5.82759C15.4089 5.41612 14.3442 5.20435 13.269 5.20435C12.1938 5.20435 11.1291 5.41612 10.1358 5.82759C9.1424 6.23905 8.23981 6.84214 7.47953 7.60242C5.94407 9.13789 5.08145 11.2204 5.08145 13.3919C5.08145 15.5634 5.94407 17.6459 7.47953 19.1814C9.01499 20.7168 11.0975 21.5794 13.269 21.5794C15.4405 21.5794 17.523 20.7168 19.0585 19.1814Z"
+                                    stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                    shape-rendering="crispEdges"></path>
+                            </g>
+                        </g>
+                        <defs>
+                            <filter id="filter0_d_2_17" x="-0.418549" y="3.70435" width="29.7139" height="29.7139"
+                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                <feColorMatrix in="SourceAlpha" type="matrix"
+                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha">
+                                </feColorMatrix>
+                                <feOffset dy="4"></feOffset>
+                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                <feComposite in2="hardAlpha" operator="out"></feComposite>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0">
+                                </feColorMatrix>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2_17">
+                                </feBlend>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_17" result="shape">
+                                </feBlend>
+                            </filter>
+                            <clipPath id="clip0_2_17">
+                                <rect width="28.0702" height="28.0702" fill="white"
+                                    transform="translate(0.403503 0.526367)"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </button>
+
+                <h1>Filmes e Séries</h1>
+                <p>Explore os melhores filmes e séries aqui.</p>
+
+            </header>
+            <h2 id="lancaMsg">Lançamentos</h2>
+            <div id="lancamentos">
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome do filme</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome do filme</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome do filme</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+            </div>
+
+            <h2 id="outrosMsg">Outros títulos disponíveis</h2>
+            <div id="geral">
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome da série</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section id="cadastro" class="tab-content" tabindex="0">
+            <header>
+                <h1>Cadastro</h1>
+                <p>Cadastre um novo título</p>
+            </header>
+            <form action="#">
+                <div class="fieldGroup">
+                    <input type="text" id="titulo" required="" autocomplete="off"><br>
+                    <label for="titulo" id="labeltitulo">Título</label><br>
+                </div>
+                <select id="tipoSelect">
+                    <option value="selecionar" selected>Tipo...</option>
+                    <option value="serie">Série</option>
+                    <option value="filme">Filme</option>
+                </select>
+
+                <!--input capa-->
+                <label for="file" class="custum-file-upload">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z"
+                                    fill=""></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="text">
+                        <span>upload da capa</span>
+                    </div>
+                    <input id="capa" type="file" accept="image/*">
+                </label>
+
+                <button type="button" id="btnAdd">Cadastrar</button>
+
+            </form>
+        </section>
+
+
+        <section id="series" class="tab-content" tabindex="0">
+            <header>
+                <h1>Séries</h1>
+                <p>Lista de séries disponíveis.</p>
+            </header>
+
+            <h2 id="lancaMsg">Lançamentos</h2>
+            <div id="lancamentos">
+
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome do filme</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+            </div>
+            <h2 id="outrosMsg">Outros títulos disponíveis</h2>
+            <div id="geral">
+
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome da série</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome da série</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome da série</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome da série</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome da série</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="filmes" class="tab-content" tabindex="0">
+            <header>
+                <h1>Filmes</h1>
+                <p>Lista de filmes disponíveis.</p>
+            </header>
+
+            <h2 id="lancaMsg">Lançamentos</h2>
+            <div id="lancamentos">
+
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome do filme</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+            </div>
+            <h2 id="outrosMsg">Outros títulos disponíveis</h2>
+            <div id="geral">
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome da série</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome da série</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="assistidos" class="tab-content" tabindex="0">
+            <header>
+                <h1>Assistidos</h1>
+                <p>Seus filmes e séries assistidos.</p>
+            </header>
+            <div id="geral">
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome do filme</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+                <div class="conteudo">
+                    <img src="../img/img-filme-sem-capa.jpg">
+                    <h4>Nome da serie</h4>
+                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section id="listagem" class="tab-content" tabindex="0">
+            <header>
+                <h1>Listagem</h1>
+            </header>
+            <table>
+                <tr>
+                    <th>Título</th>
+                    <th>Tipo</th>
+                    <th>Lançamento</th>
+                    <th>Assistido</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Filmão</td>
+                    <td>Filme</td>
+                    <td>05 / 2025</td>
+                    <td><input type="checkbox" disabled></td>
+                    <td><button><i class="fa-regular fa-pen-to-square"></i></button></td>
+                    <td><button><i class="fa-regular fa-trash-can"></i></button></td>
+                </tr>
+                <tr>
+                    <td>Seriezinha</td>
+                    <td>Filme</td>
+                    <td>03 / 2025</td>
+                    <td><input type="checkbox" disabled checked></td>
+                    <td><button><i class="fa-regular fa-pen-to-square"></i></button></td>
+                    <td><button><i class="fa-regular fa-trash-can"></i></button></td>
+                </tr>
+            </table>
+
+        </section>
+
+
+    </main>
+    <!--Script do menu-->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const menu = document.getElementById('menu');
+        const content = document.getElementById('content');
+        const menuItems = menu.querySelectorAll('li');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        function toggleMenu() {
+            menu.classList.toggle('active');
+            content.classList.toggle('shifted');
+            menuBtn.classList.toggle('open');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        menuBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
+        });
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                const selectedTab = item.getAttribute('data-tab');
+                const activeContent = document.getElementById(selectedTab);
+                if (activeContent) {
+                    activeContent.classList.add('active');
+                    activeContent.focus();
+                }
+                toggleMenu();
+            });
+        });
+    </script>
+    <script src="../JS/script.js"></script>
+</body>
+
+</html>
