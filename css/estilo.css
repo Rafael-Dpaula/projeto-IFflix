@@ -100,9 +100,10 @@ form {
     && input:focus~label,
     input:valid~label {
         transition: 0.5s;
+        border: inherit;
         top: -80px;
         background-color: #1f1f1f;
-        color: white !important;
+        color: inherit !important;
         z-index: 1;
     }
 
@@ -404,6 +405,7 @@ input[type="checkbox"] {
 
 input[type="checkbox"]:hover {
     border-color: #90ee90;
+    cursor: default;
 }
 
 input[type="checkbox"]:focus {
