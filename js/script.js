@@ -1,7 +1,50 @@
 var obras = [];
+var series = [];
+var filmes = [];
 
-function addLista() {
+function salvar() {
+    let dadosO = JSON.stringify(obras);
+    localStorage.setItem('obras', dadosO);
     obras.forEach(o => {
+        if (o.tipo == "filme") {
+            filmes.push(o);
+        }
+        else {
+            series.push(o);
+        }
+    })
+    let dadosF = JSON.stringify(filmes);
+    localStorage.setItem('filmes', dadosF);
+
+    let dadosS = JSON.stringify(series);
+    localStorage.setItem('series', dadosS);
+}
+
+function mostrartbl() {
+    if (localStorage.hasOwnProperty("obras")) {
+        obras = JSON.parse(localStorage.getItem("obras"));
+        limparLista();
+        limparObras();
+        obras.forEach(o => {
+            addLista(o);
+            addHome(o);
+            if(o.tipo == 'filme') {
+                addFilme(o);
+            }
+            else {
+                addSerie(o);
+            }
+
+        });
+    }
+}
+
+window.addEventListener('load', () => {
+    mostrartbl(); 
+});
+
+
+function addLista(o) {
         let tr = document.createElement('tr');
         tr.id = "fieldList";
         let id = document.createElement('td');
@@ -20,6 +63,8 @@ function addLista() {
         let editar = document.createElement('button');
         let iEx = document.createElement('i');
         let iEd = document.createElement('i');
+        iEx.id = 'btnRem';
+        iEd.id = 'btnAlt';
         iEx.classList.add("fa-regular");
         iEx.classList.add("fa-trash-alt");
         iEd.classList.add("fa-regular");
@@ -42,9 +87,87 @@ function addLista() {
         tr.appendChild(edicao);
         tr.appendChild(exclusao);
         document.getElementById("listaF").appendChild(tr);
+}
 
-    });
+function addHome(o) {
+        let conteudo = document.createElement('div');
+        conteudo.classList.add("conteudo");
+        let img = document.createElement('img');
+        img.src = o.capa;
+        let titulo = document.createElement('h4');
+        titulo.textContent = o.titulo;
+        let data = document.createElement('h4');
+        let dataI = document.createElement('i');
+        dataI.classList.add("fa-regular");
+        dataI.classList.add("fa-calendars");
+        dataI.textContent = o.lancamento;
+        data.appendChild(dataI);
+        conteudo.appendChild(img);
+        conteudo.appendChild(titulo);
+        conteudo.appendChild(data);
+        if (o.id >= obras.length - 4) {
+            document.getElementById("lancamentosHome").appendChild(conteudo);
+        } if (o.id < obras.length - 4) {
+            document.getElementById("geralHome").appendChild(conteudo);
+        }
+}
+function addFilme(o) {
+        let conteudo = document.createElement('div');
+        conteudo.classList.add("conteudo");
+        let img = document.createElement('img');
+        img.src = o.capa;
+        let titulo = document.createElement('h4');
+        titulo.textContent = o.titulo;
+        let data = document.createElement('h4');
+        let dataI = document.createElement('i');
+        dataI.classList.add("fa-regular");
+        dataI.classList.add("fa-calendars");
+        dataI.textContent = o.lancamento;
+        data.appendChild(dataI);
+        conteudo.appendChild(img);
+        conteudo.appendChild(titulo);
+        conteudo.appendChild(data);
+        if (o.id >= obras.length - 4 && o.tipo == 'filme') {
+            document.getElementById("lancamentosFilme").appendChild(conteudo);
+        } if (o.id < obras.length - 4 && o.tipo == 'filme') {
+            document.getElementById("geralFilme").appendChild(conteudo);
+        }
+}
+function addSerie(o) {
+        let conteudo = document.createElement('div');
+        conteudo.classList.add("conteudo");
+        let img = document.createElement('img');
+        img.src = o.capa;
+        let titulo = document.createElement('h4');
+        titulo.textContent = o.titulo;
+        let data = document.createElement('h4');
+        let dataI = document.createElement('i');
+        dataI.classList.add("fa-regular");
+        dataI.classList.add("fa-calendars");
+        dataI.textContent = o.lancamento;
+        data.appendChild(dataI);
+        conteudo.appendChild(img);
+        conteudo.appendChild(titulo);
+        conteudo.appendChild(data);
+        if (o.id >= obras.length - 4 && o.tipo == 'serie') {
+            document.getElementById("lancamentosSerie").appendChild(conteudo);
+        } if (o.id < obras.length - 4 && o.tipo == 'serie') {
+            document.getElementById("geralSerie").appendChild(conteudo);
+        }
+}
 
+function limparObras() {
+    document.getElementById("geralHome").innerHTML = "";
+    document.getElementById("lancamentosHome").innerHTML = "";
+}
+
+function limparLista() {
+    document.getElementById("listarFilmes").innerHTML = "";
+}
+
+function removeObras(id) {
+    obras = obras.filter(o => o.id != id);
+    document.getElementById("fieldList").remove();
 }
 
 function addObras() {
@@ -57,11 +180,12 @@ function addObras() {
         let capaFile = capaInput.files[0];
         let capaURL = capaFile ? URL.createObjectURL(capaFile) : "../img/img-filme-sem-capa.jpg";
 
-        let assistido = true;
+        let assistido = false;
         let id = obras.length + 1;
         obras.push({ id: id, titulo: titulo, tipo: tipo, lancamento: lancamento, assistido: assistido, capa: capaURL });
         alert("inserido com sucesso");
-        addLista();
+        salvar();
+        mostrartbl();
         limparCampos();
     }
 }
@@ -81,11 +205,11 @@ function formCheck() {
         document.getElementById("labeltitulo").style = " color:red;";
         return false;
     }
-    else if(document.getElementById("tipoSelect").value == "selecionar"){
+    else if (document.getElementById("tipoSelect").value == "selecionar") {
         document.getElementById("tipoSelect").style = "border:1px solid red; color:red;";
         return false;
     }
-    else{
+    else {
         return true;
 
     }

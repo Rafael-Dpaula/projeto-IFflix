@@ -83,20 +83,20 @@
 
             </header>
             <h2 id="lancaMsg">Lançamentos</h2>
-            <div id="lancamentos">
+            <div id="lancamentosHome">
                 <div class="conteudo">
                     <img src="../img/img-filme-sem-capa.jpg">
                     <h4>Nome do filme</h4>
-                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                    <h4><i class="fa-regular fa-calendars">--/----</i></h4>
                 </div>
             </div>
 
             <h2 id="outrosMsg">Outros títulos disponíveis</h2>
-            <div id="geral">
+            <div id="geralHome">
                 <div class="conteudo">
                     <img src="../img/img-filme-sem-capa.jpg">
                     <h4>Nome da série</h4>
-                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                    <h4><i class="fa-regular fa-calendars">--/----</i></h4>
                 </div>
 
             </div>
@@ -152,21 +152,9 @@
             </header>
 
             <h2 id="lancaMsg">Lançamentos</h2>
-            <div id="lancamentos">
-
-                <div class="conteudo">
-                    <img src="../img/img-filme-sem-capa.jpg">
-                    <h4>Nome do filme</h4>
-                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
-                </div>
-            </div>
+            <div id="lancamentosSerie"></div>
             <h2 id="outrosMsg">Outros títulos disponíveis</h2>
-            <div id="geral">
-                <div class="conteudo">
-                    <img src="../img/img-filme-sem-capa.jpg">
-                    <h4>Nome da série</h4>
-                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
-                </div>
+            <div id="geralSerie"></div>
             </div>
         </section>
 
@@ -178,22 +166,9 @@
             </header>
 
             <h2 id="lancaMsg">Lançamentos</h2>
-            <div id="lancamentos">
-
-                <div class="conteudo">
-                    <img src="../img/img-filme-sem-capa.jpg">
-                    <h4>Nome do filme</h4>
-                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
-                </div>
-            </div>
+            <div id="lancamentosFilme"></div>
             <h2 id="outrosMsg">Outros títulos disponíveis</h2>
-            <div id="geral">
-                <div class="conteudo">
-                    <img src="../img/img-filme-sem-capa.jpg">
-                    <h4>Nome da série</h4>
-                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
-                </div>
-            </div>
+            <div id="geralFilme"></div>
         </section>
 
 
@@ -206,12 +181,12 @@
                 <div class="conteudo">
                     <img src="../img/img-filme-sem-capa.jpg">
                     <h4>Nome do filme</h4>
-                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                   <h4><i class="fa-regular fa-calendars">--/----</i></h4>
                 </div>
                 <div class="conteudo">
                     <img src="../img/img-filme-sem-capa.jpg">
                     <h4>Nome da serie</h4>
-                    <h4><span><i class="fa-regular fa-calendars"></i></span>-- / ----</h4>
+                   <h4><i class="fa-regular fa-calendars">--/----</i></h4>
                 </div>
             </div>
 
@@ -232,24 +207,14 @@
                     <th></th>
                     <th></th>
                 </tr>
-                <tr id="fieldList">
-                    <td>1</td>
-                    <td>Filmão</td>
-                    <td>Filme</td>
-                    <td>05 / 2025</td>
-                    <td><input type="checkbox" disabled></td>
-                    <td><button><i class="fa-regular fa-pen-to-square"></i></button></td>
-                    <td><button><i class="fa-regular fa-trash-can"></i></button></td>
-                </tr>
-                <tr id="fieldList">
-                    <td>2</td>
-                    <td>Seriezinha</td>
-                    <td>Filme</td>
-                    <td>03 / 2025</td>
-                    <td><input type="checkbox" disabled checked></td>
-                    <td><button><i class="fa-regular fa-pen-to-square"></i></button></td>
-                    <td><button><i class="fa-regular fa-trash-can"></i></button></td>
-                </tr>
+                <table id="listarFilmes">
+
+                    <tr class="fieldList">
+                        <td>1</td>
+                        <td>Filmão</td>
+                        <td>Filme</td>
+                        <td>05 / 2025</td>
+                        <td><input type="checkbox" disabled></td>
             </table>
 
         </section>
@@ -294,7 +259,7 @@
             });
         });
     </script>
-    <script src="../JS/script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 
 </html>

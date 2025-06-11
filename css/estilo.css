@@ -297,7 +297,7 @@ button:active {
     box-shadow: 0px 40px 40px -48px #e8e8e8;
 }
 
-#lancamentos {
+#lancamentosHome, #lancamentosFilme, #lancamentosSerie {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     margin: 0 auto !important;
@@ -307,7 +307,7 @@ button:active {
     margin-bottom: 50px;
 }
 
-#geral {
+#geralHome, #geralFilme, #geralSerie {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 0.2fr));
     gap: 20px;
