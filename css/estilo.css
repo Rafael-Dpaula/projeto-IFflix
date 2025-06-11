@@ -320,6 +320,8 @@ section[id="home"],
 section[id="filmes"],
 section[id="series"],
 section[id="assistidos"] {
+    width: 100% !important;
+    height: 100% !important;
     && div.conteudo {
         float: none;
         text-align: center;
@@ -438,4 +440,17 @@ th {
 
 tr:nth-child(even) {
     background-color: #f52929;
+}
+button[id=btnTeste]{
+    background-color: transparent;
+    border: none;
+    font-family: Arial;
+    font-size: 16px;
+    color: #ff0000;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    bottom: 0px !important;
+    cursor: pointer;
+    left: 1%;
 }

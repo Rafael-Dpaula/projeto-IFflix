@@ -43,7 +43,7 @@
 
 
                 <!-- Botao de busca -->
-                <button class="searchButton" id="searchBtn" href="#">
+                <button class="searchButton" type="button" id="searchBtn" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
                         <g clip-path="url(#clip0_2_17)">
                             <g filter="url(#filter0_d_2_17)">
@@ -198,24 +198,20 @@
                 <h1>Listagem</h1>
             </header>
             <table id="listaF">
-                <tr>
-                    <th>#</th>
-                    <th>Título</th>
-                    <th>Tipo</th>
-                    <th>Lançamento</th>
-                    <th>Assistido</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <table id="listarFilmes">
-
-                    <tr class="fieldList">
-                        <td>1</td>
-                        <td>Filmão</td>
-                        <td>Filme</td>
-                        <td>05 / 2025</td>
-                        <td><input type="checkbox" disabled></td>
-            </table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Título</th>
+                        <th>Tipo</th>
+                        <th>Lançamento</th>
+                        <th>Assistido</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="listarFilmes"></tbody>
+            </table><br>
+                <button type="button" id="btnTeste">Adicionar teste</button>
 
         </section>
 
