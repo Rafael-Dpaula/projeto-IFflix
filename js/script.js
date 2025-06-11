@@ -38,6 +38,17 @@ function mostrartbl() {
         });
     }
 }
+function search(){
+    if (localStorage.hasOwnProperty("obras")) {
+        let busca = document.getElementById('busca').value;
+        obras.forEach(o => {
+            if (o.titulo.toLowerCase() === busca.toLowerCase()) {
+                addHome(o);
+            }            
+        });
+
+    }
+}
 
 window.addEventListener('load', () => {
     mostrartbl(); 
@@ -216,4 +227,6 @@ function formCheck() {
 }
 
 let btnAdd = document.querySelector("#btnAdd");
+let btnSearch = document.querySelector("#searchBtn");
 btnAdd.addEventListener("click", addObras);
+btnSearch.addEventListener("click", search);
