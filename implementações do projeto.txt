@@ -1,0 +1,16 @@
+implementações do trabalho de conclusão de Criação de páginas web - primeira semana:
+- html quase pronto;
+- css quase pronto;
+- menu lateral estilo nav-bar para troca de abas;
+- listagem dinâmica de filmes e series;
+- listagem dinâmica exclusiva para filmes e series;
+- barra de busca para filmes e series;
+- listagem dinâmica em tabela para filmes e series;
+- exclusão de item pela tabela, alteração em desenvolvimento;
+- sistema de filmes novos em aba especifica como "lançamentos";
+- formulário para cadastrar novos filmes;
+
+
+implementações do trabalho de conclusão de Criação de páginas web - Segunda semana:
+- ajuste de bugs;
+- melhora na função de busca de filme;

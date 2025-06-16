@@ -2,19 +2,22 @@ var obras = [];
 var filmes = [];
 var series = [];
 
+window.addEventListener('load', () => {
+    mostrartbl();
+});
 function salvar() {
     let dadosO = JSON.stringify(obras);
     localStorage.setItem('obras', dadosO);
-    filmes =[];
-        series = [];
-        obras.forEach(fs => {
-            if (fs.tipo == 'filme') {
-                filmes.push(fs);
-            }
-            else {
-                series.push(fs);
-            }
-        });
+    filmes = [];
+    series = [];
+    obras.forEach(fs => {
+        if (fs.tipo == 'filme') {
+            filmes.push(fs);
+        }
+        else {
+            series.push(fs);
+        }
+    });
     let dadosF = JSON.stringify(filmes);
     localStorage.setItem('filmes', dadosF);
     let dadosS = JSON.stringify(series);
@@ -25,10 +28,10 @@ function salvar() {
 function mostrartbl() {
     if (localStorage.hasOwnProperty("obras")) {
         obras = JSON.parse(localStorage.getItem("obras"));
-        if(localStorage.hasOwnProperty("filmes")){
+        if (localStorage.hasOwnProperty("filmes")) {
             filmes = JSON.parse(localStorage.getItem("filmes"));
         }
-        if(localStorage.hasOwnProperty("series")){
+        if (localStorage.hasOwnProperty("series")) {
             series = JSON.parse(localStorage.getItem("series"));
         }
         limparLista();
@@ -48,21 +51,25 @@ function mostrartbl() {
 function search() {
     if (localStorage.hasOwnProperty("obras")) {
         limparObras();
-        let busca = document.getElementById('busca').value;
+        const busca = document.getElementById('busca').value;
+        const regex = new RegExp(busca, 'i');
         let finder = false;
 
-        if(busca.toLowerCase() == ""){
+        if (busca === "") {
+            document.getElementById("lancaMsg").style = "display:block;";
+            document.getElementById("outrosMsg").textContent = "Outros títulos disponíveis "
             mostrartbl();
+            return 0;
         }
         obras.forEach(o => {
-            if (o.titulo.toLowerCase() == busca.toLowerCase()) {
+            if (o.titulo.search(regex) == busca.search(regex)) {
                 document.getElementById("lancaMsg").style = "display:none;";
                 document.getElementById("outrosMsg").textContent = "Busca: " + busca;
-                addHome(o);
+                addHomeSearch(o);
                 finder = true;
             }
         });
-        if(finder == false){
+        if (finder == false) {
             document.getElementById("lancaMsg").style = "display:none;";
             document.getElementById("outrosMsg").textContent = "Nenhum resultado encontrado para: " + busca;
         }
@@ -70,18 +77,14 @@ function search() {
     }
 }
 
-window.addEventListener('load', () => {
-    mostrartbl();
-});
-
-function test(){
-    for(var i = 0; i < 15; i++){
-        let id, titulo, tipo, lancamento, capa="../img/img-filme-sem-capa.jpg";
-        id = obras.length+1;
+function test() {
+    for (var i = 0; i < 15; i++) {
+        let id, titulo, tipo, lancamento, capa = "../img/img-filme-sem-capa.jpg";
+        id = obras.length + 1;
         titulo = "teste" + id;
-        if(i%2 == 0){
+        if (i % 2 == 0) {
             tipo = "filme";
-        }else{
+        } else {
             tipo = "serie";
         }
         lancamento = new Date().toLocaleDateString();
@@ -92,7 +95,6 @@ function test(){
     }
     salvar();
 }
-
 
 function addLista(o) {
     let tr = document.createElement('tr');
@@ -143,6 +145,24 @@ function addLista(o) {
     document.getElementById("listarFilmes").appendChild(tr);
 }
 
+function addHomeSearch(o) {
+    let conteudo = document.createElement('div');
+    conteudo.classList.add("conteudo");
+    let img = document.createElement('img');
+    img.src = o.capa;
+    let titulo = document.createElement('h4');
+    titulo.textContent = o.titulo;
+    let data = document.createElement('h4');
+    let dataI = document.createElement('i');
+    dataI.classList.add("fa-regular");
+    dataI.classList.add("fa-calendars");
+    dataI.textContent = o.lancamento;
+    data.appendChild(dataI);
+    conteudo.appendChild(img);
+    conteudo.appendChild(titulo);
+    conteudo.appendChild(data);
+    document.getElementById("geralHome").appendChild(conteudo);
+}
 function addHome(o) {
     let conteudo = document.createElement('div');
     conteudo.classList.add("conteudo");
@@ -159,7 +179,7 @@ function addHome(o) {
     conteudo.appendChild(img);
     conteudo.appendChild(titulo);
     conteudo.appendChild(data);
-    if (o.id >= obras.length-4) {
+    if (o.id >= obras.length - 4) {
         document.getElementById("lancamentosHome").appendChild(conteudo);
     } if (o.id < obras.length - 4) {
         document.getElementById("geralHome").appendChild(conteudo);
@@ -205,7 +225,7 @@ function addSerie(o, index) {
     conteudo.appendChild(data);
     if (index >= series.length - 5 && o.tipo == 'serie') {
         document.getElementById("lancamentosSerie").appendChild(conteudo);
-    } if (index < series.length -5 && o.tipo == 'serie') {
+    } if (index < series.length - 5 && o.tipo == 'serie') {
         document.getElementById("geralSerie").appendChild(conteudo);
     }
 }
@@ -229,8 +249,7 @@ function addObras() {
         let tipo = document.getElementById("tipoSelect").value;
         let lancamento = new Date().toLocaleDateString();
 
-        let capaInput = document.getElementById("capa");
-        let capaFile = capaInput.files[0];
+        let capaFile = document.getElementById("capa").files[0];
         let capaURL = capaFile ? URL.createObjectURL(capaFile) : "../img/img-filme-sem-capa.jpg";
 
         let assistido = false;
@@ -281,7 +300,7 @@ function Alterar() {
 function Excluir() {
     var lin = this.parentElement.parentElement;
     var ind = lin.rowIndex;
-    if (confirm("Confirma a exclusão do Filme/Serie? "+obras[ind-1].titulo)) {
+    if (confirm("Confirma a exclusão do Filme/Serie? " + obras[ind - 1].titulo)) {
         obras.splice(ind - 1, 1);
         document.getElementById('listaF').deleteRow(ind);
         salvar();
