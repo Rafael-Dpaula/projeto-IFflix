@@ -14,3 +14,6 @@ implementações do trabalho de conclusão de Criação de páginas web - primei
 implementações do trabalho de conclusão de Criação de páginas web - Segunda semana:
 - ajuste de bugs;
 - melhora na função de busca de filme;
+- funcionalidade de alteração;
+- sistema de full View ao clique nos filmes e series;
+- funcionalidade de marcar como assistido;

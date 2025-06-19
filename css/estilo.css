@@ -297,7 +297,9 @@ button:active {
     box-shadow: 0px 40px 40px -48px #e8e8e8;
 }
 
-#lancamentosHome, #lancamentosFilme, #lancamentosSerie {
+#lancamentosHome,
+#lancamentosFilme,
+#lancamentosSerie {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     margin: 0 auto !important;
@@ -307,7 +309,10 @@ button:active {
     margin-bottom: 50px;
 }
 
-#geralHome, #geralFilme, #geralSerie {
+#geralHome,
+#geralFilme,
+#geralSerie,
+#geralAssistidos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 0.2fr));
     gap: 20px;
@@ -320,8 +325,10 @@ section[id="home"],
 section[id="filmes"],
 section[id="series"],
 section[id="assistidos"] {
+
     width: 100% !important;
     height: 100% !important;
+
     && div.conteudo {
         float: none;
         text-align: center;
@@ -392,9 +399,10 @@ button {
 }
 
 input[type="checkbox"] {
+    left: 20px;
     width: 24px;
     height: 24px;
-    background-color: white;
+    background-color: transparent;
     border: 2px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
@@ -406,7 +414,6 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:hover {
-    border-color: #90ee90;
     cursor: default;
 }
 
@@ -415,8 +422,8 @@ input[type="checkbox"]:focus {
 }
 
 input[type="checkbox"]:checked {
-    background-color: white;
-    border: 2px solid #90ee90; /* light green border */
+    background-color: transparent;
+    border: 2px solid #90ee90;
 }
 
 input[type="checkbox"]:checked::after {
@@ -426,7 +433,7 @@ input[type="checkbox"]:checked::after {
     top: 3px;
     width: 6px;
     height: 12px;
-    border: solid #90ee90; /* light green checkmark */
+    border: solid #90ee90;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
@@ -441,7 +448,8 @@ th {
 tr:nth-child(even) {
     background-color: #f52929;
 }
-button[id=btnTeste]{
+
+button[id=btnTeste] {
     background-color: transparent;
     border: none;
     font-family: Arial;
@@ -453,4 +461,224 @@ button[id=btnTeste]{
     bottom: 0px !important;
     cursor: pointer;
     left: 1%;
+}
+
+div[id="alterForm"] {
+    display: none;
+    background-color: #1a1a1a;
+    padding: 20px;
+    margin-left: 50px !important;
+    margin-bottom: 50px !important;
+    width: 80%;
+    text-align: left;
+    font-size: 27px;
+    z-index: 1001;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    button[id="fecharAlterForm"] {
+        position: relative;
+        background: var(--gradient-2, linear-gradient(90deg, #f52929 0%, #ff0000 100%));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        float: right;
+        clear: both;
+        top: -40px;
+        left: 110px;
+        border: 0px solid white;
+        border-radius: 5px;
+        width: 5%;
+        border-radius: 100%;
+        color: white;
+        bottom: -15px !important;
+        margin-right: 10%;
+        margin-bottom: 50px;
+        font-size: 32px;
+        height: 50px;
+        color: white;
+        background-color: transparent;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    h3 {
+        width: fit-content;
+        cursor: default;
+        background: var(--gradient-2, linear-gradient(90deg, #f52929 0%, #ff0000 100%));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent
+    }
+}
+
+div#fullView {
+    display: none;
+    background-color: #1a1a1a;
+    padding: 20px;
+    width: 60%;
+    font-size: 27px;
+    cursor: default;
+    z-index: 1001;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Arial;
+    flex-direction: row;
+    gap: 40px;
+    align-items: flex-start; 
+}
+
+    button#fecharFullView {
+        background: var(--gradient-2, linear-gradient(90deg, #f52929 0%, #ff0000 100%));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        float: right !important;
+        clear: both !important;
+        top: -40px;
+        left: 100px;
+        border: 0px solid white;
+        border-radius: 5px;
+        width: 5%;
+        border-radius: 100%;
+        color: white;
+        bottom: -15px !important;
+        margin-right: 10%;
+        margin-bottom: 50px;
+        font-size: 32px;
+        height: 50px;
+        color: white;
+        background-color: transparent;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    div#imgContainerFV img {
+    width: 400px;
+    float: left;
+    height: 600px;
+    border: 2px solid transparent;
+    background: var(--gradient-2, linear-gradient(90deg, #f52929 0%, #ff0000 100%));
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    object-fit: cover;
+}
+
+div#textContainerFV {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+div#textContainerFV h3,
+div#textContainerFV h1 {
+    background: var(--gradient-2, linear-gradient(90deg, #f52929 0%, #ff0000 100%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 10px 0;
+}
+
+div#textContainerFV h2 {
+    color: white;
+    margin: 0 0 20px 0;
+    text-align: left;
+}
+
+.titleFV{
+    font-size: 32px;
+    width: fit-content;
+    cursor: default;
+    background: var(--gradient-2, linear-gradient(90deg, #f52929 0%, #ff0000 100%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: fit-co;
+}
+
+
+/*checkbox de assistido no FullView*/
+.check {
+  cursor: pointer;
+  position: relative;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* espaço entre svg e texto */
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+}
+
+.check:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(34, 50, 84, 0.03);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.check svg {
+  position: relative;
+  z-index: 1;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #c8ccd4;
+  stroke-width: 1.5;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
+}
+
+.check svg path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 0;
+}
+
+.check svg polyline {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 66;
+}
+
+.check:hover:before {
+  opacity: 1;
+}
+
+.check:hover svg {
+  stroke: var(--accent-color, #a3e583);
+}
+
+#cbx2:checked + .check svg {
+  stroke: var(--accent-color, #a3e583);
+}
+
+#cbx2:checked + .check svg path {
+  stroke-dashoffset: 60;
+  transition: all 0.3s linear;
+}
+
+#cbx2:checked + .check svg polyline {
+  stroke-dashoffset: 42;
+  transition: all 0.2s linear;
+  transition-delay: 0.15s;
+}
+div#fullView .textoCheckAssistido{
+    font-size: 40.5px;
+    font-weight: bolder;
+    width: fit-content;
+    cursor: default;
+    background: var(--gradient-2, linear-gradient(90deg, #f52929 0%, #ff0000 100%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: fit-content;
 }
