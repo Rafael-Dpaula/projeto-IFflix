@@ -5,6 +5,7 @@ var assistidos = [];
 
 window.addEventListener('load', () => {
     mostrartbl();
+    salvar();
 });
 function salvar() {
     let dadosO = JSON.stringify(obras);
@@ -16,7 +17,7 @@ function salvar() {
         if (fs.tipo == 'filme') {
             filmes.push(fs);
         }
-        if(fs.assistido == true){
+        if (fs.assistido == true) {
             assistidos.push(fs);
         }
         if (fs.tipo == 'serie') {
@@ -49,6 +50,7 @@ function mostrartbl() {
         obras.forEach((o, index) => {
             addLista(o);
             addHome(o);
+            addAssistidos(o, index);
         });
         filmes.forEach((f, index) => {
             addFilme(f, index);
@@ -56,52 +58,52 @@ function mostrartbl() {
         series.forEach((s, index) => {
             addSerie(s, index);
         });
-        assistidos.forEach((a, index) => {
-            addAssistidos(a, index);
-        });
+
     }
 }
 function search() {
     if (localStorage.hasOwnProperty("obras")) {
         limparObras();
-        const busca = document.getElementById('busca').value;
-        const regex = new RegExp(busca, 'i');
+        const busca = document.getElementById('busca').value.trim().toLowerCase();
         let finder = false;
 
         if (busca === "") {
             document.getElementById("lancaMsg").style = "display:block;";
-            document.getElementById("outrosMsg").textContent = "Outros títulos disponíveis "
+            document.getElementById("outrosMsg").textContent = "Outros títulos disponíveis";
             mostrartbl();
-            return 0;
+            return;
         }
+
         obras.forEach(o => {
-            if (o.titulo.search(regex) == busca.search(regex)) {
+            if (o.titulo.toLowerCase().includes(busca)) {
                 document.getElementById("lancaMsg").style = "display:none;";
-                document.getElementById("outrosMsg").textContent = "Busca: " + busca;
+                document.getElementById("outrosMsg").textContent = "Resultados relacionados com: " + busca;
                 addHomeSearch(o);
                 finder = true;
             }
         });
-        if (finder == false) {
+
+        if (!finder) {
             document.getElementById("lancaMsg").style = "display:none;";
             document.getElementById("outrosMsg").textContent = "Nenhum resultado encontrado para: " + busca;
         }
-
     }
 }
+
 
 function test() {
     for (var i = 0; i < 15; i++) {
         let id, titulo, tipo, lancamento, capa = "../img/img-filme-sem-capa.jpg";
+        let assistido = false;
         id = obras.length + 1;
         titulo = "teste" + id;
         if (i % 2 == 0) {
             tipo = "filme";
+            assistido = true;
         } else {
             tipo = "serie";
         }
         lancamento = new Date().toLocaleDateString();
-        let assistido = false;
         let test = { id: id, titulo: titulo, tipo: tipo, lancamento: lancamento, assistido: assistido, capa: capa };
         obras.push(test);
     }
@@ -242,7 +244,13 @@ function addAssistidos(o, index) {
     conteudo.appendChild(titulo);
     conteudo.appendChild(data);
     conteudo.addEventListener("click", fullView);
-    document.getElementById("geralAssistidos").appendChild(conteudo);
+    if (o.assistido == true) {
+        document.getElementById("geralAssistidos").appendChild(conteudo);
+    }
+    else { document.getElementById("geralNAssistidos").appendChild(conteudo); }
+    document.getElementById("percentuaisMsg").textContent = assistidos.length + " / " + obras.length + " \u2192 " + ((Number(assistidos.length) / Number(obras.length)) * 100).toFixed(0) + "%";
+    document.getElementById("percentualSlider").value = ((Number(assistidos.length) / Number(obras.length)) * 100).toFixed(0);
+    console.log(document.getElementById("percentualSlider").value = ((Number(assistidos.length) / Number(obras.length)) * 100).toFixed(0));
 }
 function addSerie(o, index) {
     let conteudo = document.createElement('div');
@@ -277,6 +285,7 @@ function limparObras() {
     document.getElementById("geralSerie").innerHTML = "";
     document.getElementById("lancamentosSerie").innerHTML = "";
     document.getElementById("geralAssistidos").innerHTML = "";
+    document.getElementById("geralNAssistidos").innerHTML = "";
 }
 
 function limparLista() {
@@ -314,7 +323,7 @@ function limparCampos() {
 function formCheck() {
     let repetido = false;
     for (let i = 0; i < obras.length; i++) {
-        if (obras[i].titulo == document.getElementById("titulo").value) {
+        if (obras[i].titulo.toLowerCase() == document.getElementById("titulo").value.toLowerCase()) {
             repetido = true;
             break;
         }
@@ -324,7 +333,7 @@ function formCheck() {
         document.getElementById("labeltitulo").style = " color:red;";
         return false;
     }
-    else{
+    else {
         document.getElementById("titulo").style = "border: 1px solid white; color: white";
         document.getElementById("labeltitulo").style = " color:white;";
     }
@@ -347,6 +356,36 @@ function formCheck() {
     }
     return true;
 }
+function altFormCheck(obra) {
+    const novoTitulo = document.getElementById("tituloAlt").value.trim().toLowerCase();
+    let repetido = false;
+
+    for (let i = 0; i < obras.length; i++) {
+        if (obras[i].id !== obra.id && obras[i].titulo.toLowerCase() === novoTitulo) {
+            repetido = true;
+            break;
+        }
+    }
+
+    if (novoTitulo.length === 0) {
+        document.getElementById("tituloAlt").style = "border: 1px solid red; color:red;";
+        document.getElementById("labeltituloAlt").style = "color:red;";
+        return false;
+    } else {
+        document.getElementById("tituloAlt").style = "border: 1px solid white; color:white;";
+        document.getElementById("labeltituloAlt").style = "color:white;";
+    }
+
+    if (repetido) {
+        document.getElementById("tituloAlt").style = "border: 1px solid red; color:red;";
+        document.getElementById("labeltituloAlt").style = "color:red;";
+        alert("Obra existente");
+        return false;
+    }
+
+    return true;
+}
+
 
 function Alterar() {
     document.getElementById("alterForm").style.display = "block";
@@ -364,24 +403,26 @@ function Alterar() {
 }
 
 function salvarAlterar(obra) {
-    if (confirm("Confirma a alteração do Filme/Serie " + obra.titulo + "?")) {
+    if (altFormCheck(obra)) {
+        if (confirm("Confirma a alteração do Filme/Serie " + obra.titulo + "?")) {
 
-        let titulo = document.getElementById("tituloAlt").value;
-        let capaAltFile = document.getElementById("capa").files[0];
-        let capaURL = capaAltFile ? URL.createObjectURL(capaAltFile) : "../img/img-filme-sem-capa.jpg";
-        let tipo = document.getElementById("tipoSelectAlt").value;
-        obras.forEach(o => {
-            if (o.id === obra.id) {
-                o.titulo = titulo;
-                o.tipo = tipo;
-                o.lancamento = new Date().toLocaleDateString();
-                o.capa = capaURL;
-            }
-        })
-        salvar();
-        mostrartbl();
-        fecharAlt();
-    };
+            let titulo = document.getElementById("tituloAlt").value;
+            let capaAltFile = document.getElementById("capa").files[0];
+            let capaURL = capaAltFile ? URL.createObjectURL(capaAltFile) : "../img/img-filme-sem-capa.jpg";
+            let tipo = document.getElementById("tipoSelectAlt").value;
+            obras.forEach(o => {
+                if (o.id === obra.id) {
+                    o.titulo = titulo;
+                    o.tipo = tipo;
+                    o.lancamento = new Date().toLocaleDateString();
+                    o.capa = capaURL;
+                }
+            })
+            salvar();
+            mostrartbl();
+            fecharAlt();
+        };
+    }
 }
 
 function fecharAlt() {
@@ -478,10 +519,13 @@ function fullView() {
     input.addEventListener("change", function () {
         if (obra) {
             obra.assistido = this.checked;
-            salvar();
+            salvarAssistidoStatus();
+            const statusTextElement = document.getElementById('statusTextFV');
+            if (statusTextElement) {
+                statusTextElement.textContent = obra.assistido ? 'Assistido' : 'Não assistido';
+            }
         }
     });
-
 
     const label = document.createElement('label');
     label.setAttribute('for', 'cbx2');
@@ -499,9 +543,10 @@ function fullView() {
     polyline.setAttribute("points", "1 9 7 14 15 4");
 
     const texto = document.createElement('span');
-    texto.textContent = 'Assistido';
+    texto.textContent = obra.assistido ? 'Assistido' : 'Não assistido';
     texto.classList.add('textoCheckAssistido');
     texto.style.color = 'white';
+    texto.id = 'statusTextFV';
 
     container.appendChild(texto);
     svg.appendChild(path);
@@ -516,6 +561,23 @@ function fullView() {
     setTimeout(() => {
         document.addEventListener("click", fecharAoClicarFora);
     }, 10);
+}
+function salvarAssistidoStatus() {
+    assistidos = [];
+    obras.forEach(fs => {
+        if (fs.assistido === true) {
+            assistidos.push(fs);
+        }
+    });
+
+    localStorage.setItem('assistidos', JSON.stringify(assistidos));
+    document.getElementById("geralAssistidos").innerHTML = "";
+    document.getElementById("geralNAssistidos").innerHTML = "";
+    obras.forEach((o, index) => {
+        addAssistidos(o, index);
+    });
+    document.getElementById("percentuaisMsg").textContent = assistidos.length + " / " + obras.length + " \u2192 " + ((Number(assistidos.length) / Number(obras.length)) * 100).toFixed(0) + "%";
+    document.getElementById("percentualSlider").value = ((Number(assistidos.length) / Number(obras.length)) * 100).toFixed(0);
 }
 
 function fecharAoClicarFora(event) {
@@ -535,6 +597,7 @@ function Excluir() {
         salvar();
     }
 }
+
 
 let btnAdd = document.querySelector("#btnAdd");
 let btnSearch = document.querySelector("#searchBtn");

@@ -82,6 +82,7 @@
                 <p>Explore os melhores filmes e séries aqui.</p>
 
             </header>
+
             <h2 id="lancaMsg">Lançamentos</h2>
             <div id="lancamentosHome">
                 <div class="conteudo">
@@ -163,6 +164,7 @@
             <header>
                 <h1>Filmes</h1>
                 <p>Lista de filmes disponíveis.</p>
+
             </header>
 
             <h2 id="lancaMsg">Lançamentos</h2>
@@ -171,15 +173,23 @@
             <div id="geralFilme"></div>
 
         </section>
-        
+
 
         <section id="assistidos" class="tab-content" tabindex="0">
             <header>
                 <h1>Assistidos</h1>
                 <p>Seus filmes e séries assistidos.</p>
             </header>
-            <h2 id="assistidosMsg">Assistidos</h2>
+
+            <h2 id="assistidosMsg">Já assistidos</h2>
             <div id="geralAssistidos"></div>
+            <h2 id="nAssistidosMsg">Disponíveis para assisitir</h2>
+            <div id="geralNAssistidos"></div>
+            <div id="percentuais">
+                <h2 id="percentuaisMsg">0 / 0</h2>
+                <label class="slider"><input id="percentualSlider" type="range" class="level" min="0" max="100"
+                        disabled></label>
+            </div>
 
         </section>
 
@@ -209,7 +219,7 @@
                 <form action="#">
                     <div class="fieldGroup">
                         <input type="text" id="tituloAlt" required="" autocomplete="off"><br>
-                        <label for="tituloAlt" id="labeltitulo">Título</label><br>
+                        <label for="tituloAlt" id="labeltituloAlt">Título</label><br>
                     </div>
                     <select id="tipoSelectAlt">
                         <option value="serie">Série</option>

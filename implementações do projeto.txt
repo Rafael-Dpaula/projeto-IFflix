@@ -17,3 +17,9 @@ implementações do trabalho de conclusão de Criação de páginas web - Segund
 - funcionalidade de alteração;
 - sistema de full View ao clique nos filmes e series;
 - funcionalidade de marcar como assistido;
+
+implementações do trabalho de conclusão de Criação de páginas web - Terceira semana:
+- ajuste na função de marcar como assistido;
+- função de percentual de filmes assitidos;
+- função de total de filmes para o total de filmes assistidos;
+- ajuste na função de busca;
