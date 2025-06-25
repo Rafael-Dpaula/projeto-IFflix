@@ -298,6 +298,7 @@ function addObras() {
         alert("inserido com sucesso");
         salvar();
         mostrartbl();
+        limparCampos();
     }
 }
 
@@ -311,19 +312,40 @@ function limparCampos() {
 }
 
 function formCheck() {
+    let repetido = false;
+    for (let i = 0; i < obras.length; i++) {
+        if (obras[i].titulo == document.getElementById("titulo").value) {
+            repetido = true;
+            break;
+        }
+    }
     if (document.getElementById("titulo").value.length == 0) {
         document.getElementById("titulo").style = "border: 1px solid red; color:red;";
         document.getElementById("labeltitulo").style = " color:red;";
         return false;
     }
-    else if (document.getElementById("tipoSelect").value == "selecionar") {
+    else{
+        document.getElementById("titulo").style = "border: 1px solid white; color: white";
+        document.getElementById("labeltitulo").style = " color:white;";
+    }
+    if (document.getElementById("tipoSelect").value == "selecionar") {
         document.getElementById("tipoSelect").style = "border:1px solid red; color:red;";
         return false;
     }
     else {
-        return true;
-
+        document.getElementById("tipoSelect").style = "border:1px solid white; color:white;";
     }
+    if (repetido) {
+        document.getElementById("titulo").style = "border: 1px solid red; color:red;";
+        document.getElementById("labeltitulo").style = " color:red;";
+        alert("Obra existente");
+        return false;
+    }
+    else {
+        document.getElementById("titulo").style = "border: 1px solid white; color:white;";
+        document.getElementById("labeltitulo").style = " color:white;";
+    }
+    return true;
 }
 
 function Alterar() {
